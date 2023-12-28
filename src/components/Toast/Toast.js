@@ -18,15 +18,15 @@ const ICONS_BY_VARIANT = {
   error: AlertOctagon,
 };
 
-function Toast({ message, variant, onDismiss }) {
+function Toast({ id, children, variant = 'info', onDismiss }) {
   const IconTag = ICONS_BY_VARIANT[variant];
   return (
     <div className={`${styles.toast} ${styles[variant]}`}>
       <div className={styles.iconContainer}>
-        <IconTag size={24} />
+        {IconTag && <IconTag size={24} />}
       </div>
-      <p className={styles.content}>{message}</p>
-      <button className={styles.closeButton} onClick={() => onDismiss()}>
+      <p className={styles.content}>{children}</p>
+      <button className={styles.closeButton} onClick={() => onDismiss(id)}>
         <X size={24} />
         <VisuallyHidden>Dismiss message</VisuallyHidden>
       </button>
